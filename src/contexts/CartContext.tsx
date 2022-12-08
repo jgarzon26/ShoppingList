@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { Product } from '../models';
 
-export const ProductsContext  = createContext({
+export const CartContext  = createContext({
     products: [] as Product[],
 });

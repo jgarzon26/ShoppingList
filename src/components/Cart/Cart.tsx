@@ -2,13 +2,13 @@ import { ProductsWrapper, Title } from './Cart.styled';
 import { FC, useContext, useEffect, useState } from 'react';
 import { Product } from '../../models';
 import { ProductCard } from '../ProductCard';
-import { ProductsContext } from '../../contexts/productsContext';
+import { CartContext } from '../../contexts/CartContext';
 
 export const Cart = () => {
 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const products = useContext(ProductsContext)
+  const products = useContext(CartContext)
 
   useEffect(() => {
     let total = 0;

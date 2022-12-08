@@ -8,7 +8,7 @@ import {
 
 import { useContext } from 'react';
 
-import { ProductsContext } from '../../contexts/productsContext';
+import { CartContext } from '../../contexts/CartContext';
 
 import { Product } from '../../models';
 
@@ -22,12 +22,12 @@ interface ProductCardProps {
 
 export const ProductCard = ({id, name, imageUrl, price, isInCart} : ProductCardProps) => {
 
-  let products = useContext(ProductsContext);
+  let cart = useContext(CartContext);
 
   return (
     <Wrapper background={imageUrl}>
       <AddButton isInCart={isInCart} onClick={() => {
-        products.products = [...products.products, { id, name, imageUrl, price }];
+        cart.products = [...cart.products, { id, name, imageUrl, price }];
       }}>
         <p>{!isInCart ? '+' : '-'}</p>
       </AddButton>

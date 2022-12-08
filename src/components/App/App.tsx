@@ -5,7 +5,7 @@ import { Cart } from '../Cart';
 import { Products } from '../Products';
 import { createContext } from 'react';
 import { Product } from '../../models';
-import { ProductsContext } from '../../contexts/productsContext';
+import { CartContext } from '../../contexts/CartContext';
 
 export const App = () => {
 
@@ -18,12 +18,12 @@ export const App = () => {
         <Link to='/'>Home</Link>
         <Link to='/cart'>Cart</Link>
       </LinksWrapper>
-      <ProductsContext.Provider value={{products : []}}>
+      <CartContext.Provider value={{products : []}}>
         <Routes>
           <Route path='/' element={<Products />} />
           <Route path='/cart' element={<Cart />} />
         </Routes>
-      </ProductsContext.Provider>
+      </CartContext.Provider>
     </Wrapper>
   );
 };
