@@ -3,7 +3,7 @@ import { LinksWrapper, TitleWrapper, Wrapper } from './App.styled';
 
 import { Cart } from '../Cart';
 import { Products } from '../Products';
-import { createContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Product } from '../../models';
 import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';

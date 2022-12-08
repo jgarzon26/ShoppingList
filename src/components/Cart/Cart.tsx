@@ -1,6 +1,5 @@
 import { ProductsWrapper, Title } from './Cart.styled';
-import { FC, useContext, useEffect, useState } from 'react';
-import { Product } from '../../models';
+import { useContext, useEffect, useState } from 'react';
 import { ProductCard } from '../ProductCard';
 import { CartContext } from '../../contexts/CartContext';
 

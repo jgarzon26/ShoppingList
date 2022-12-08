@@ -1,10 +1,8 @@
 import { ProductsWrapper, Title } from './Products.styled';
 
-import { ProductActionTypes, ProductCard } from '../ProductCard';
-import { shopData } from '../../data';
+import { ProductCard } from '../ProductCard';
 
-import { useContext, useEffect, useState } from 'react';
-import { Product } from '../../models';
+import { useContext } from 'react';
 import { ProductContext } from '../../contexts/ProductContext';
 
 

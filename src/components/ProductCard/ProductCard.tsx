@@ -7,11 +7,7 @@ import {
 } from './ProductCard.styled';
 
 import { useContext, useEffect } from 'react';
-
 import { CartContext } from '../../contexts/CartContext';
-
-import { Product } from '../../models';
-import { ProductActionTypes } from '../ProductCard';
 import { ProductContext } from '../../contexts/ProductContext';
 
 interface ProductCardProps {
