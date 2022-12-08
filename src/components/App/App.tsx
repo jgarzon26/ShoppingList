@@ -5,8 +5,7 @@ import { Cart } from '../Cart';
 import { Products } from '../Products';
 import { createContext } from 'react';
 import { Product } from '../../models';
-
-export const ProductsContext  = createContext<Product[]>([]);
+import { ProductsContext } from '../../contexts/productsContext';
 
 export const App = () => {
 
@@ -19,7 +18,7 @@ export const App = () => {
         <Link to='/'>Home</Link>
         <Link to='/cart'>Cart</Link>
       </LinksWrapper>
-      <ProductsContext.Provider value={[]}>
+      <ProductsContext.Provider value={{products : []}}>
         <Routes>
           <Route path='/' element={<Products />} />
           <Route path='/cart' element={<Cart />} />

@@ -8,7 +8,7 @@ import {
 
 import { useContext } from 'react';
 
-import { ProductsContext } from '../App';
+import { ProductsContext } from '../../contexts/productsContext';
 
 import { Product } from '../../models';
 
@@ -19,8 +19,7 @@ export const ProductCard = ({ id, name, imageUrl, price }: Product) => {
   return (
     <Wrapper background={imageUrl}>
       <AddButton isInCart={false} onClick={() => {
-        products = [...products, { id, name, imageUrl, price }];
-        alert(`${name} added to cart!`);
+        products.products = [...products.products, { id, name, imageUrl, price }];
       }}>
         <p>+</p>
       </AddButton>
