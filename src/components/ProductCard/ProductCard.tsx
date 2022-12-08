@@ -30,10 +30,17 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart} : ProductCardP
   return (
     <Wrapper background={imageUrl}>
       <AddButton isInCart={isInCart} onClick={() => {
-        cart.products = [...cart.products, { id, name, imageUrl, price }];
-        cart.setProducts(cart.products);
-        productContext.products = productContext.products.filter((product) => product.id != id);
-        productContext.setProducts(productContext.products);
+        if(!isInCart) {
+          cart.products = [...cart.products, { id, name, imageUrl, price }];
+          cart.setProducts(cart.products);
+          productContext.products = productContext.products.filter((product) => product.id != id);
+          productContext.setProducts(productContext.products);
+        } else {
+          productContext.products = [...productContext.products, { id, name, imageUrl, price }];
+          productContext.setProducts(productContext.products);
+          cart.products = cart.products.filter((product) => product.id != id);
+          cart.setProducts(cart.products);
+        }
       }}>
         <p>{!isInCart ? '+' : '-'}</p>
       </AddButton>
