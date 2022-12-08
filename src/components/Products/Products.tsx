@@ -9,7 +9,7 @@ export const Products = () => {
       <Title>Welcome to the Clothing Shop</Title>
       <ProductsWrapper>
         {shopData.map((data, index) => (
-          <ProductCard key={index} {...data} />
+          <ProductCard key={index} {...data} isInCart = {false} />
         ))}
       </ProductsWrapper>
     </>
