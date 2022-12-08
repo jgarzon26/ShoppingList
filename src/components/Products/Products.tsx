@@ -10,26 +10,15 @@ import { ProductContext } from '../../contexts/ProductContext';
 
 export const Products = () => {
 
-  const [products, setProducts] = useState(
-    shopData.map((data, index) => (
-      <ProductCard key={index} {...data} isInCart = {false} />
-    ))
-  );
-
-  const editProductsArray = (action : ProductActionTypes, id : number) => {
-    switch (action) {
-      case ProductActionTypes.Remove:
-        setProducts(products.filter((product) => product.props.id != id));
-    }
-  }
+  let productsContext = useContext(ProductContext);
 
   return (
     <>
       <Title>Welcome to the Clothing Shop</Title>
       <ProductsWrapper>
-        <ProductContext.Provider value={{editProductFunc : editProductsArray}}>
-          {products}
-        </ProductContext.Provider>
+        {productsContext.products.map((data, index) => (
+          <ProductCard key={index} {...data} isInCart = {false} />
+        ))}
       </ProductsWrapper>
     </>
   );

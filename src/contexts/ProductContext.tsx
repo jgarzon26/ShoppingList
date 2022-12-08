@@ -1,6 +1,7 @@
 import { createContext } from 'react';
-import { ProductActionTypes } from '../components/ProductCard';
+import { Product } from '../models';
 
 export const ProductContext = createContext({
-    editProductFunc : (action : ProductActionTypes, id : number) => {}
+    products : [] as Product[],
+    setProducts : (products : Product[]) => {},
 });

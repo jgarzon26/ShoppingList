@@ -6,7 +6,7 @@ import {
   Wrapper,
 } from './ProductCard.styled';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { CartContext } from '../../contexts/CartContext';
 
@@ -31,7 +31,9 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart} : ProductCardP
     <Wrapper background={imageUrl}>
       <AddButton isInCart={isInCart} onClick={() => {
         cart.products = [...cart.products, { id, name, imageUrl, price }];
-        productContext.editProductFunc(ProductActionTypes.Remove, id);
+        cart.setProducts(cart.products);
+        productContext.products = productContext.products.filter((product) => product.id != id);
+        productContext.setProducts(productContext.products);
       }}>
         <p>{!isInCart ? '+' : '-'}</p>
       </AddButton>
@@ -42,3 +44,4 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart} : ProductCardP
     </Wrapper>
   );
 };
+
