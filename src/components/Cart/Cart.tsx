@@ -1,29 +1,28 @@
 import { ProductsWrapper, Title } from './Cart.styled';
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { Product } from '../../models';
 import { ProductCard } from '../ProductCard';
+import { ProductsContext } from '../App';
 
-interface productProps{
-  products : Product[];
-}
-
-export const Cart : FC<productProps> = (props) : JSX.Element => {
+export const Cart = () => {
 
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const products = useContext(ProductsContext)
+
   useEffect(() => {
     let total = 0;
-    props.products.forEach((product) => {
+    products.forEach((product) => {
       total += product.price;
     });
     setTotalPrice(total);
-  }, [props.products]);
+  }, [products]);
 
   return (
     <>
       <Title>Your cart total is ${totalPrice}.00</Title>
       <ProductsWrapper>
-        {props.products.map((data, index) => 
+        {products.map((data, index) => 
           <ProductCard key={index} {...data} />
         )}
       </ProductsWrapper>
