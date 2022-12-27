@@ -15,7 +15,7 @@ export const Products = () => {
       <Title>Welcome to the Clothing Shop</Title>
       <ProductsWrapper>
         {productsContext.products.map((data, index) => (
-          <ProductCard key={index} {...data} isInCart = {false} />
+          <ProductCard key={index} {...data} isInCart = {false} isInWishlist = {false} />
         ))}
       </ProductsWrapper>
     </>
