@@ -1,4 +1,4 @@
-import { ProductsWrapper, Title } from './Cart.styled';
+import { CheckoutPane, ProductsWrapper, Title } from './Cart.styled';
 import { useContext, useEffect, useState } from 'react';
 import { ProductCard } from '../ProductCard';
 import { CartContext } from '../../contexts/CartContext';
@@ -24,6 +24,10 @@ export const Cart = () => {
         {products.products.map((data, index) => 
           <ProductCard key={index} {...data} isInCart = {true} />
         )}
+        <CheckoutPane>
+          <h1>Checkout</h1>
+          
+        </CheckoutPane>
       </ProductsWrapper>
     </>
   );

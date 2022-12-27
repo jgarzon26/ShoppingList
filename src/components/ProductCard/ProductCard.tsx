@@ -16,33 +16,56 @@ interface ProductCardProps {
   imageUrl: string,
   price: number,
   isInCart : boolean,
+  quantity : number,
 }
 
-export const ProductCard = ({id, name, imageUrl, price, isInCart} : ProductCardProps) => {
+export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : ProductCardProps) => {
 
-  let cart = useContext(CartContext);
+  const cart = useContext(CartContext);
   const productContext = useContext(ProductContext);
+
+  const changeQuantity = (isInCart : Boolean) => {
+    
+    let currentContext = isInCart ? cart : productContext;
+    let otherContext = isInCart ? productContext : cart;
+    let productsExistInOtherContext = otherContext.products.find((product) => product.id == id);
+
+    if(productsExistInOtherContext) {
+      productsExistInOtherContext.quantity++;
+      otherContext.products = otherContext.products.filter((product) => product.id != id);
+      otherContext.setProducts([...otherContext.products, productsExistInOtherContext]);
+    } else {
+      otherContext.products = [...otherContext.products, { id, name, imageUrl, price, quantity: 1 }];
+      otherContext.setProducts(otherContext.products);
+    }
+
+    currentContext.products = currentContext.products.map((product) => {
+      if(product.id != id) {
+        return product;
+      }
+
+      if(product.quantity - 1 == 0) {
+        currentContext.products = currentContext.products.filter((product) => product.id != id);
+        currentContext.setProducts(currentContext.products);
+        return product;
+      }
+
+      product.quantity -= 1;
+      return product;
+    });
+  }
 
   return (
     <Wrapper background={imageUrl}>
       <AddButton isInCart={isInCart} onClick={() => {
-        if(!isInCart) {
-          cart.products = [...cart.products, { id, name, imageUrl, price }];
-          cart.setProducts(cart.products);
-          productContext.products = productContext.products.filter((product) => product.id != id);
-          productContext.setProducts(productContext.products);
-        } else {
-          productContext.products = [...productContext.products, { id, name, imageUrl, price }];
-          productContext.setProducts(productContext.products);
-          cart.products = cart.products.filter((product) => product.id != id);
-          cart.setProducts(cart.products);
-        }
+        changeQuantity(isInCart);
       }}>
         <p>{!isInCart ? '+' : '-'}</p>
       </AddButton>
       <TextContainer>
         <Title>{name}</Title>
         <SubTitle>{price}.00$</SubTitle>
+        <SubTitle>Quantity: {quantity}</SubTitle>
       </TextContainer>
     </Wrapper>
   );
