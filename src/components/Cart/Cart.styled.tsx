@@ -13,6 +13,9 @@ export const ProductsWrapper = styled.div`
   gap: 20px;
 `;
 
-export const CheckoutPane = styled.div`
+export const CheckoutPane = styled.button`
   width: 100%;
+  height: 2em;
+  font-weight: bold;
+  font-size: 16px;
 `;

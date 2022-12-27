@@ -6,7 +6,7 @@ import {
   Wrapper,
 } from './ProductCard.styled';
 
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';
 
@@ -25,7 +25,7 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : Pr
   const productContext = useContext(ProductContext);
 
   const changeQuantity = (isInCart : Boolean) => {
-    
+
     let currentContext = isInCart ? cart : productContext;
     let otherContext = isInCart ? productContext : cart;
     let productsExistInOtherContext = otherContext.products.find((product) => product.id == id);
@@ -33,10 +33,10 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : Pr
     if(productsExistInOtherContext) {
       productsExistInOtherContext.quantity++;
       otherContext.products = otherContext.products.filter((product) => product.id != id);
-      otherContext.setProducts([...otherContext.products, productsExistInOtherContext]);
+      otherContext.setProducts([...otherContext.products, productsExistInOtherContext].sort((a, b) => a.id - b.id));
     } else {
       otherContext.products = [...otherContext.products, { id, name, imageUrl, price, quantity: 1 }];
-      otherContext.setProducts(otherContext.products);
+      otherContext.setProducts(otherContext.products.sort((a, b) => a.id - b.id));
     }
 
     currentContext.products = currentContext.products.map((product) => {

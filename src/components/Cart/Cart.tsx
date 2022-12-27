@@ -12,7 +12,7 @@ export const Cart = () => {
   useEffect(() => {
     let total = 0;
     products.products.forEach((product) => {
-      total += product.price;
+      total += product.price * product.quantity;
     });
     setTotalPrice(total);
   }, [products]);
@@ -24,11 +24,13 @@ export const Cart = () => {
         {products.products.map((data, index) => 
           <ProductCard key={index} {...data} isInCart = {true} />
         )}
-        <CheckoutPane>
-          <h1>Checkout</h1>
-          
-        </CheckoutPane>
       </ProductsWrapper>
+      <CheckoutPane onClick={() => {
+        alert('You have successfully checked out!');
+        products.setProducts([]);
+      }}>
+        Checkout
+      </CheckoutPane>
     </>
   );
 };
