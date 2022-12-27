@@ -10,6 +10,7 @@ import {
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { ProductContext } from '../../contexts/ProductContext';
+import { WishlistContext } from '../../contexts/WishlistContext';
 
 interface ProductCardProps {
   id: number,
@@ -17,13 +18,15 @@ interface ProductCardProps {
   imageUrl: string,
   price: number,
   isInCart : boolean,
+  isInWishlist : boolean,
   quantity : number,
 }
 
-export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : ProductCardProps) => {
+export const ProductCard = ({id, name, imageUrl, price, isInCart, isInWishlist, quantity} : ProductCardProps) => {
 
   const cart = useContext(CartContext);
   const productContext = useContext(ProductContext);
+  const wishlistContext = useContext(WishlistContext);
 
   const changeQuantity = (isInCart : Boolean) => {
 
@@ -56,6 +59,19 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : Pr
     });
   }
 
+  const setWishlist = (isInWishlist : Boolean) => {
+    if(isInWishlist) {
+      wishlistContext.products = wishlistContext.products.filter((product) => product.id != id);
+      wishlistContext.setProducts(wishlistContext.products);
+    } else {
+      if(wishlistContext.products.find((product) => product.id == id)) 
+        return;
+      wishlistContext.products = [...wishlistContext.products, { id, name, imageUrl, price, quantity }];
+      wishlistContext.setProducts(wishlistContext.products.sort((a, b) => a.id - b.id));
+      alert(`${name} Added to wishlist`);
+    }
+  }
+
   return (
     <Wrapper background={imageUrl}>
       <AddButton isInCart={isInCart} onClick={() => {
@@ -63,9 +79,9 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : Pr
       }}>
         <p>{!isInCart ? '+' : '-'}</p>
       </AddButton>
-      <AddToWishlistButton>
-        <p>Add To Wishlist</p>
-      </AddToWishlistButton>
+      {!isInCart && <AddToWishlistButton onClick={() => setWishlist(isInWishlist)}>
+          <p>{!isInWishlist ? "Add To Wishlist" : "Remove"}</p>
+        </AddToWishlistButton>}
       <TextContainer>
         <Title>{name}</Title>
         <SubTitle>{price}.00$</SubTitle>

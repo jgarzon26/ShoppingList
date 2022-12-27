@@ -22,7 +22,7 @@ export const Cart = () => {
       <Title>Your cart total is ${totalPrice}.00</Title>
       <ProductsWrapper>
         {products.products.map((data, index) => 
-          <ProductCard key={index} {...data} isInCart = {true} />
+          <ProductCard key={index} {...data} isInCart = {true} isInWishlist = {false} />
         )}
       </ProductsWrapper>
       <CheckoutPane onClick={() => {

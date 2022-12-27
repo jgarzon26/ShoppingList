@@ -28,7 +28,7 @@ export const App = () => {
         <Link to='/cart'>Cart</Link>
       </LinksWrapper>
       <CartContext.Provider value={{products : cartProducts, setProducts : setCartProducts}}>
-        <WishlistContext.Provider value={{products : [], setProducts : setWishlistProducts}}>
+        <WishlistContext.Provider value={{products : wishlistProducts, setProducts : setWishlistProducts}}>
           <ProductContext.Provider value={{products : products, setProducts : setProducts}}>
             <Routes>
             <Route path='/' element={<Products />} />
