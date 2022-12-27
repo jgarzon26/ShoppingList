@@ -1,5 +1,6 @@
 import {
   AddButton,
+  AddToWishlistButton,
   SubTitle,
   TextContainer,
   Title,
@@ -62,6 +63,9 @@ export const ProductCard = ({id, name, imageUrl, price, isInCart, quantity} : Pr
       }}>
         <p>{!isInCart ? '+' : '-'}</p>
       </AddButton>
+      <AddToWishlistButton>
+        <p>Add To Wishlist</p>
+      </AddToWishlistButton>
       <TextContainer>
         <Title>{name}</Title>
         <SubTitle>{price}.00$</SubTitle>

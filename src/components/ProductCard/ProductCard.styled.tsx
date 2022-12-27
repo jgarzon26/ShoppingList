@@ -48,6 +48,32 @@ export const AddButton = styled.div<AddButtonProps>`
   }
 `;
 
+export const AddToWishlistButton = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 60px;
+  right: 20px;
+  width: 70px;
+  height: 20px;
+  background: #60c95d;
+  border-radius: 10%;
+  padding: 5px;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.2);
+    transition: 1s;
+  }
+
+  p {
+    font-size: 10px;
+    margin: 0;
+    color: white;
+  }
+`;
+
 export const TextContainer = styled.div`
   display: grid;
   gap: 10px;
