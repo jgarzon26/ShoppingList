@@ -9,7 +9,6 @@ export const Wishlist = () => {
 
     return (
         <>
-            <Title>Wishlist</Title>
             <ProductsWrapper>
                 {wishlistContext.products.map((data, index) => (
                     <ProductCard key={index} {...data} isInCart = {false} isInWishlist = {true} />
