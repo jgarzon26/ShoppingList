@@ -1,7 +1,15 @@
-import { useState } from "react";
-import { Product } from "../../models/Product";
+import { useContext, useState } from "react";
+import { WishlistContext } from "../../contexts/WishlistContext";
+import { Title } from "./Wishlist.styled";
 
 export const Wishlist = () => {
 
-    const [products, setProducts] = useState<Product[]>([]);
+    let wishlistContext = useContext(WishlistContext);
+
+    return (
+        <>
+            <Title>Wishlist</Title>
+
+        </>
+    );
 }
